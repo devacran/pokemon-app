@@ -1,10 +1,18 @@
 import React from "react";
-
-const FavoriteItem = ({ name, ...props }) => {
-  const id = props.id || "";
+import { connect } from "react-redux";
+import { setFavorite } from "../actions";
+const FavoriteItem = props => {
+  const { item } = props;
+  const id = item.id || "";
   const url = id.match(/\/(\d+)\//) || [];
+  const handleClick = () => {
+    props.setFavorite(item);
+  };
   return (
     <div className="favorite-item">
+      <div className="favorite-item__overlay">
+        <button onClick={handleClick}>Eliminar</button>
+      </div>
       <div
         className="favorite-item__img"
         style={{
@@ -13,8 +21,11 @@ const FavoriteItem = ({ name, ...props }) => {
       >
         <img />
       </div>
-      <div className="favorite-item__title">{name || "Desconocido"}</div>
+      <div className="favorite-item__title">{item.name || "Desconocido"}</div>
     </div>
   );
 };
-export default FavoriteItem;
+const mapDispatchToProps = {
+  setFavorite
+};
+export default connect(null, mapDispatchToProps)(FavoriteItem);

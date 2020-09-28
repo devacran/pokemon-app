@@ -12,11 +12,13 @@ const Carousel = () => {
   useEffect(() => {
     getPokemon().then(data => setPokemonList(data));
   }, []);
-
+  let currentPosition;
   const handleForwards = () => {
     if (currentItem < 2) return;
     setCurrentItem(currentItem - 1);
-    let currentPosition = window.getComputedStyle(carousel.current).transform;
+    if (!currentPosition) {
+      currentPosition = window.getComputedStyle(carousel.current).transform;
+    }
     let itemWidth = window.getComputedStyle(item.current).width;
     currentPosition = currentPosition.match(
       /^(matrix\(\d+,\s?\d+,\s?\d+,\s?\d+,\s?)(\-?\d+)/
@@ -29,7 +31,9 @@ const Carousel = () => {
   const handleBackwards = () => {
     setCurrentItem(currentItem + 1);
     let itemWidth = window.getComputedStyle(item.current).width;
-    let currentPosition = window.getComputedStyle(carousel.current).transform;
+    if (!currentPosition) {
+      currentPosition = window.getComputedStyle(carousel.current).transform;
+    }
     currentPosition = currentPosition.match(
       /^(matrix\(\d+,\s?\d+,\s?\d+,\s?\d+,\s?)(\-?\d+)/
     );

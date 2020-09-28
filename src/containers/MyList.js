@@ -21,11 +21,9 @@ const MyList = ({ historyPage, main, favoritesList }) => {
       <div className="favorites__container">
         <div className="favorites__grid">
           {favoritesList.map(item => {
-            console.log(item);
-            return <FavoriteItem {...item} />;
+            return <FavoriteItem item={item} />;
           })}
         </div>
-        <Scrollbar />
       </div>
     </div>
   );

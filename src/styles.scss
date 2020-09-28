@@ -87,6 +87,31 @@ a {
     width: 100%;
     height: 400px;
     background-color: gray;
+    transition: width 0.4s;
+    button {
+      background: white;
+      border-radius: 20px;
+      padding: 1em;
+      color: black;
+      cursor: pointer;
+    }
+    &:hover {
+      .favorite-item__overlay {
+        opacity: 1;
+      }
+    }
+    &__overlay {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #0000007a;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+    }
     &__title {
       width: 100%;
       bottom: 0;
@@ -97,11 +122,7 @@ a {
       background-color: #ac0f0f;
     }
     &__img {
-      position: relative;
       height: 80%;
-      transition: 0.4s;
-      cursor: pointer;
-      z-index: 1;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
