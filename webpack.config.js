@@ -1,15 +1,15 @@
 module.exports = {
   entry: "./src/index.js",
+  mode: "development",
   output: {
     path: "/dist",
-    filename: "main.js"
+    filename: "main.js",
   },
   devServer: {
-    inline: true,
     host: "0.0.0.0",
     historyApiFallback: {
-      index: "index.html"
-    }
+      index: "./index.html",
+    },
   },
   module: {
     rules: [
@@ -19,20 +19,20 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"]
-          }
-        }
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.(svg|png|jpe?g|gif)$/i,
         exclude: /node_modules/,
-        use: ["file-loader"]
-      }
-    ]
-  }
+        use: ["file-loader"],
+      },
+    ],
+  },
 };
