@@ -7,20 +7,21 @@ const CarouselItem = ({ reference, img, name, isCurrent, ...props }) => {
   };
   const id = props.id || "";
   const url = id.match(/\/(\d+)\//) || [];
-  const isFav = props.myList.filter(item => item.id === props.id).shift();
+  const isFav = props.myList.filter((item) => item.id === props.id).shift();
 
   const className = `carousel-element ${
     isFav ? "carousel-element--selected" : ""
   }
   ${isCurrent ? "carousel-element--expand" : ""}
   `;
+  const imgId = url[1];
   return (
     <div ref={reference} className={className}>
       <div
         onClick={selectFavorite}
         className="carousel-element__imagen"
         style={{
-          backgroundImage: `url(https://pokeres.bastionbot.org/images/pokemon/${url[1]}.png)`
+          backgroundImage: `url(https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${imgId}.png)`,
         }}
       />
       <div className="carousel-element__title">
@@ -31,9 +32,9 @@ const CarouselItem = ({ reference, img, name, isCurrent, ...props }) => {
 };
 
 const mapDispatchToProps = {
-  setFavorite
+  setFavorite,
 };
-const mapStateToProps = state => ({
-  myList: state.myList
+const mapStateToProps = (state) => ({
+  myList: state.myList,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CarouselItem);

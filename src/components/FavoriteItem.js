@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setFavorite } from "../actions";
-const FavoriteItem = props => {
+const FavoriteItem = (props) => {
   const { item } = props;
   const id = item.id || "";
   const url = id.match(/\/(\d+)\//) || [];
@@ -16,7 +16,7 @@ const FavoriteItem = props => {
       <div
         className="favorite-item__img"
         style={{
-          backgroundImage: `url(https://pokeres.bastionbot.org/images/pokemon/${url[1]}.png)`
+          backgroundImage: `url(https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${url[1]}.png)`,
         }}
       >
         <img />
@@ -26,6 +26,6 @@ const FavoriteItem = props => {
   );
 };
 const mapDispatchToProps = {
-  setFavorite
+  setFavorite,
 };
 export default connect(null, mapDispatchToProps)(FavoriteItem);
